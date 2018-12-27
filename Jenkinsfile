@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Code Quality Check') { 
             steps { 
-               docker build . 
+               sh 'docker build .' 
             }
         }
          stage('Code coverage') { 
