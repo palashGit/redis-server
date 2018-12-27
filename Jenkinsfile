@@ -1,14 +1,15 @@
 pipeline {
     agent any  
     stages {
-        stage('Code Quality Check') { 
+        stage('Build Redis Image') { 
             steps { 
-               sh 'docker build .' 
-            }
+                sh 'docker login ec2-54-173-108-195.compute-1.amazonaws.com:8083'
+               sh 'docker build -t http://ec2-54-173-108-195.compute-1.amazonaws.com:8081/redis-server:{BUILD_NUMBER} .' 
+               }
         }
-         stage('Code coverage') { 
+         stage('Docker push to Nexus') { 
             steps { 
-               echo 'This is a code coverage stage.' 
+               sh 'docker push http://ec2-54-173-108-195.compute-1.amazonaws.com:8081:${BUILD_NUMBER} .'
             }
         }
          stage('Compile') { 
