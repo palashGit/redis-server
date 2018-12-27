@@ -15,7 +15,8 @@ pipeline {
         }
          stage('Docker push to Nexus') { 
             steps { 
-               sh 'docker push ec2-54-173-108-195.compute-1.amazonaws.com:8083/redis-server:${BUILD_NUMBER}'
+                sh 'docker tag ec2-54-173-108-195.compute-1.amazonaws.com:8083/redis-server:${BUILD_NUMBER} ec2-54-173-108-195.compute-1.amazonaws.com:8083/redis-server:latest'
+               sh 'docker push ec2-54-173-108-195.compute-1.amazonaws.com:8083/redis-server:latest'
             }
         }
     }
