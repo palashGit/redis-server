@@ -9,7 +9,7 @@ pipeline {
         }
          stage('Docker push to Nexus') { 
             steps { 
-               sh 'docker push http://ec2-54-173-108-195.compute-1.amazonaws.com:8081:${BUILD_NUMBER} .'
+               sh 'docker push ec2-54-173-108-195.compute-1.amazonaws.com:8081/redis-server:${BUILD_NUMBER}'
             }
         }
          stage('Compile') { 
