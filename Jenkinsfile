@@ -1,10 +1,16 @@
+#!/usr/bin/env groovy
+
 pipeline {
     agent any  
     stages {
         stage('Build Redis Image') { 
             steps { 
+                sh 'docker build -t ec2-54-173-108-195.compute-1.amazonaws.com:8083/redis-server:${BUILD_NUMBER} .' 
+               }
+        }
+         stage('Nexus Login') { 
+            steps { 
                 sh 'docker login ec2-54-173-108-195.compute-1.amazonaws.com:8083'
-               sh 'docker build -t ec2-54-173-108-195.compute-1.amazonaws.com:8083/redis-server:${BUILD_NUMBER} .' 
                }
         }
          stage('Docker push to Nexus') { 
@@ -15,11 +21,6 @@ pipeline {
          stage('Compile') { 
             steps { 
                echo 'This is a compile stage.' 
-            }
-        }
-         stage('Deploy') { 
-            steps { 
-               echo 'This is a deploy stage.' 
             }
         }
     }
