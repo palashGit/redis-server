@@ -17,6 +17,7 @@ pipeline {
             steps { 
                 sh 'docker tag ec2-3-84-52-185.compute-1.amazonaws.com:8083/redis-server:${BUILD_NUMBER} ec2-3-84-52-185.compute-1.amazonaws.com:8083/redis-server:latest'
                sh 'docker push ec2-3-84-52-185.compute-1.amazonaws.com:8083/redis-server:latest'
+               sh 'docker push ec2-3-84-52-185.compute-1.amazonaws.com:8083/redis-server:${BUILD_NUMBER}'
             }
         }
     }
