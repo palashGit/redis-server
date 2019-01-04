@@ -1,6 +1,6 @@
 # Set the base image to Ubuntu 
 #Testing CI pipeline 
-#Testing CI pipeline new 
+#Hello Devops team.
 #New Testing
 FROM ubuntu
 
